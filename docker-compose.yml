@@ -1,0 +1,9 @@
+version: "3.4"
+services:
+  redis:
+    image: redis
+    network_mode: host
+    ports:
+      - 6379:6379
+    expose:
+      - "6379"
