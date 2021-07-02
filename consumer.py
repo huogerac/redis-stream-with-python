@@ -1,7 +1,12 @@
+"""
+It reads the REDIS STREAM events
+Using the xread, it gets 1 event per time (from the oldest to the last one)
+
+Usage:
+  python consumer.py
+"""
 from os import environ
 from redis import Redis
-from uuid import uuid1
-from time import sleep
 
 stream_key = environ.get("STREAM", "jarless-1")
 
@@ -25,8 +30,8 @@ def get_data(redis_connection):
             if resp:
                 key, messages = resp[0]
                 last_id, data = messages[0]
-                print(last_id)
-                print(data)
+                print("REDIS ID: ", last_id)
+                print("      --> ", data)
 
         except ConnectionError as e:
             print("ERROR REDIS CONNECTION: {}".format(e))
