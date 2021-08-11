@@ -1,4 +1,3 @@
-import json
 import asyncio
 from os import environ
 
